@@ -24,7 +24,10 @@ Puppet::Type.type(:glusterfs_vol).provide(:glusterfs) do
     if resource[:brick] then
       opts << resource[:brick]
     end
-    
+
+    if resource[:force] then
+      opts << 'force'
+    end
 
     begin
       volinfo = glusterfs('volume', 'info', resource[:name])
